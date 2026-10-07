@@ -1462,6 +1462,15 @@ App.controller('Main', function ($scope, $timeout, $location, Api, tmhDynamicLoc
       $scope.openSelect(item);
    };
 
+   $scope.stepFanSpeed = function ($event, item, service) {
+      $event.preventDefault();
+      $event.stopPropagation();
+
+      callService(item, 'fan', service, {});
+
+      return false;
+   };
+
    $scope.setFanSpeed = function ($event, item, entity, option) {
       $event.preventDefault();
       $event.stopPropagation();

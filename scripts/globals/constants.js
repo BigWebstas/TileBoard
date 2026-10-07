@@ -135,6 +135,10 @@ export const FEATURES = {
       TURN_OFF: 256,
       STOP: 4096,
    },
+   FAN: {
+      // https://github.com/home-assistant/core/blob/dev/homeassistant/components/fan/__init__.py
+      SET_SPEED: 1,
+   },
    WEATHER: {
       // https://github.com/home-assistant/core/blob/dev/homeassistant/components/weather/const.py
       FORECAST_DAILY: 1,

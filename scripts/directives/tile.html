@@ -110,6 +110,15 @@
    </div>
 
    <div ng-if="item.type === TYPES.FAN" class="item-entity-container">
+      <div ng-if="entity.state === 'on' && supportsFeature(FEATURES.FAN.SET_SPEED, entity)">
+         <div class="item-button -center-right" ng-click="stepFanSpeed($event, item, 'increase_speed')">
+            <i class="mdi mdi-plus"></i>
+         </div>
+         <div class="item-button -bottom-right" ng-click="stepFanSpeed($event, item, 'decrease_speed')">
+            <i class="mdi mdi-minus"></i>
+         </div>
+      </div>
+
       <div
          class="item-entity"
          ng-if="(_icon = entityIcon(item, entity))"
@@ -119,8 +128,18 @@
       </div>
 
       <div class="item-fan">
-         <div class="item-fan--speed" ng-if="entity.attributes.preset_modes" ng-click="openFanSpeedSelect($event, item)">
+         <div
+            class="item-fan--speed"
+            ng-if="entity.attributes.preset_modes"
+            ng-click="openFanSpeedSelect($event, item)"
+         >
             <span ng-bind="entity.attributes.preset_mode"></span>
+         </div>
+         <div
+            class="item-fan--speed -static"
+            ng-if="!entity.attributes.preset_modes && entity.state === 'on' && entity.attributes.percentage != null"
+         >
+            <span ng-bind="entity.attributes.percentage + '%'"></span>
          </div>
       </div>
 

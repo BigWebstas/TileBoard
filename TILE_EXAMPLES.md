@@ -207,7 +207,7 @@ Essentially a door entry tile is a pop-up with a fullscreen camera and a set of 
 ```
 
 #### FAN
-Allows you to toggle a fan on and off, as well as pick its preset mode (shown when the fan exposes `preset_modes`).
+Allows you to toggle a fan on and off, as well as step its speed up and down (+/- buttons, for fans with speed control) and pick a preset mode (when the fan exposes `preset_modes`).
 
 ![FAN](images/tile-screenshots/FAN.png)
 ```js
