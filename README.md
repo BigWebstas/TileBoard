@@ -707,9 +707,28 @@ This example will fire a persistent red notification on TileBoard when a specifi
 
 `lifetime`: Length of time (in seconds) for the notification to persist before automatically dismissing. Leave a lifetime out of the event_data for persistent messages.
 
+## Themes
+Set a theme with `customTheme` in `config.js`. Themes can be combined by passing an array.
+
+| Theme | Look |
+|---|---|
+| `CUSTOM_THEMES.HOME_ASSISTANT` | Home Assistant style cards, blue primary, amber active icons. Light, switches to dark when the device is in dark mode. |
+| `CUSTOM_THEMES.HOME_ASSISTANT_DARK` | The same, always dark. |
+| `CUSTOM_THEMES.GOOGLE` | Palette of the [Google Theme for Home Assistant](https://github.com/JuanMTech/google-theme): blue primary and active icons. Light, follows the device's dark mode. |
+| `CUSTOM_THEMES.GOOGLE_DARK` | The same, always dark. |
+
+```js
+customTheme: CUSTOM_THEMES.GOOGLE,
+```
+
+The other themes (`TRANSPARENT`, `MATERIAL`, `MOBILE`, `COMPACT`, `HOMEKIT`, `WINPHONE`, `WIN95`, `FRESH_AIR`, `WHITE_PAPER`) are unchanged. The four themes above are built on CSS variables (`--ha-primary`, `--ha-card`, `--ha-text`, ...) in `styles/themes.less`, so a variant is a small palette block. Colours are copied from the themes, they are not read live from Home Assistant.
+
 ## Custom CSS Styles
 Several classes are added to each tile depending on the type of tile and state. Custom CSS styles can be applied by creating a `custom.css` file in the `styles` directory.
 *Tip: If no style is applied after adding the file, make sure to disable cache in the browser as it may cache the previous empty `custom.css` file for a while.*
+
+## Performance
+Home Assistant sends a state change for every entity, many times a second on busy installs. TileBoard applies each state immediately but re-renders at most once per animation frame, and not at all while the page is hidden, so a burst of updates costs one render instead of one per event. There is nothing to configure.
 
 ## Tablet and mobile configuration
 For the tablet configuration use `COMPACT` custom theme and reduce padding.
