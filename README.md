@@ -35,7 +35,7 @@ Setup instructions: refer to https://github.com/BigWebstas/TileBoard/blob/master
 
 ### Run within the public Home Assistant www directory
 
-1. Download the latest release zip file (`Tileboard.zip`) from https://github.com/resoai/TileBoard/releases and unpack to a directory of your choice. (Alternatively you can checkout the repo and build the app manually. Check [CONTRIBUTING](./CONTRIBUTING.md) for more info.)
+1. Download the latest release zip file (`Tileboard.zip`) from https://github.com/BigWebstas/TileBoard/releases and unpack to a directory of your choice. (Alternatively you can checkout the repo and build the app manually. Check [CONTRIBUTING](./CONTRIBUTING.md) for more info.)
 2. In chosen directory rename `config.example.js` to `config.js` and adjust it for your needs
 3. Optionally create an empty `styles/custom.css` file. Everything will work without it but there will be a network request error logged in the console which can be annoying to some.
 4. Create a directory called `tileboard` inside `www` directory in HA's config path and copy all unpacked files there.
