@@ -31,7 +31,7 @@ Check the instructions within the addon on how to edit and customize the configu
 
 Runs a standalone local HTTP server, independently from the Home Assistant itself.
 
-Setup instructions: refer to https://github.com/resoai/TileBoard/blob/master/docker/README.md
+Setup instructions: refer to https://github.com/BigWebstas/TileBoard/blob/master/docker/README.md
 
 ### Run within the public Home Assistant www directory
 
