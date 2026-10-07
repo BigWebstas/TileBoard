@@ -26,6 +26,8 @@ export const CUSTOM_THEMES = {
    HOMEKIT: 'homekit',
    HOME_ASSISTANT: 'home-assistant',
    HOME_ASSISTANT_DARK: 'home-assistant-dark',
+   GOOGLE: 'google',
+   GOOGLE_DARK: 'google-dark',
    FRESH_AIR: 'fresh-air',
    WHITE_PAPER: 'white-paper',
 };
