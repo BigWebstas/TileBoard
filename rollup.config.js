@@ -66,7 +66,9 @@ const config = {
       babel({
          babelHelpers: 'bundled',
          exclude: [
-            'node_modules/**',
+            // Dependencies are shipped as is, except for packages that only provide modern (ES2022) sources.
+            // Those must be transpiled or old browsers (e.g. old Android WebViews) can't parse the bundle.
+            /node_modules\/(?!(chart\.js|@kurkle\/color|chartjs-adapter-moment|hls\.js)\/)/,
             'scripts/directives/*.html',
          ],
       }),
