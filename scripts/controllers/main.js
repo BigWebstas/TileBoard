@@ -2410,7 +2410,7 @@ App.controller('Main', function ($scope, $timeout, $location, Api, tmhDynamicLoc
    function handleMessage (data) {
       if (data.type === 'event' && data.id in forecastSubscriptions) {
          $scope.forecasts[forecastSubscriptions[data.id]] = data.event.forecast;
-         updateView();
+         scheduleViewUpdate();
       } else if (data.type === 'event') {
          handleEvent(data.event);
       }
@@ -2431,7 +2431,7 @@ App.controller('Main', function ($scope, $timeout, $location, Api, tmhDynamicLoc
       } catch (e) {
          console.error(e);
       }
-      updateView();
+      scheduleViewUpdate();
    }
 
    function addError (error) {
@@ -2467,6 +2467,22 @@ App.controller('Main', function ($scope, $timeout, $location, Api, tmhDynamicLoc
       if (!$scope.$$phase) {
          $scope.$apply();
       }
+   }
+
+   // Home Assistant can send many state changes per second. The states are applied right away but
+   // the (expensive) digest is limited to once per frame, and is skipped while the page is hidden.
+   let viewUpdateQueued = false;
+
+   function scheduleViewUpdate () {
+      if (viewUpdateQueued) {
+         return;
+      }
+
+      viewUpdateQueued = true;
+      requestAnimationFrame(function () {
+         viewUpdateQueued = false;
+         updateView();
+      });
    }
 
    // @ts-ignore
