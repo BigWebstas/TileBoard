@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.11.0](https://github.com/resoai/TileBoard/compare/v2.10.2...v2.11.0) (2026-10-07)
+
+
+### Features
+
+* **fan:** add speed step buttons and percentage readout ([34fac1f](https://github.com/resoai/TileBoard/commit/34fac1f395af84019d22e0f33037df6ec000e0a8))
+* upgrade to Chart.js 4 and drop angular-chart.js ([be2a306](https://github.com/resoai/TileBoard/commit/be2a3068a63b0cf6f5a5b3c8343332301635e85f))
+
+
+### Bug Fixes
+
+* support current Home Assistant fan and weather forecast APIs ([86e18dc](https://github.com/resoai/TileBoard/commit/86e18dc0a4a7a214c8cd376fedbec8c3e0d36d88))
+
 ### [2.10.2](https://github.com/resoai/TileBoard/compare/v2.10.1...v2.10.2) (2022-06-30)
 
 
