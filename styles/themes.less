@@ -847,8 +847,9 @@
 
 // Home Assistant look: surface cards with a hairline border, HA's blue as primary and amber for active entities.
 // `home-assistant` is light and follows the OS dark mode, `home-assistant-dark` is always dark.
-// The `google` and `google-dark` themes reuse the same structure with the palette of the Google Theme for
-// Home Assistant (https://github.com/JuanMTech/google-theme): blue primary, blue active entities.
+// The `google` and `google-dark` themes reuse the same structure with the Pixel / Material 3 palette and shapes of
+// https://github.com/BigWebstas/google-theme (fork of JuanMTech/google-theme): blue primary, blue active entities,
+// 28px corners and no card border.
 .ha-theme-light() {
   --ha-primary: #03a9f4;
   --ha-background: #fafafa;
@@ -859,6 +860,8 @@
   --ha-icon: #44739e;
   --ha-active: #ffc107;
   --ha-popup-overlay: rgba(0, 0, 0, 0.5);
+  --ha-radius: 12px;
+  --ha-border-width: 1px;
 }
 
 .ha-theme-dark() {
@@ -871,6 +874,8 @@
   --ha-icon: #44739e;
   --ha-active: #ffc107;
   --ha-popup-overlay: rgba(0, 0, 0, 0.7);
+  --ha-radius: 12px;
+  --ha-border-width: 1px;
 }
 
 .-theme-home-assistant {
@@ -886,27 +891,31 @@
 }
 
 .ha-theme-google-light() {
-  --ha-primary: rgb(26, 115, 232);
-  --ha-background: rgb(248, 248, 248);
+  --ha-primary: rgb(11, 87, 208);
+  --ha-background: rgb(240, 244, 249);
   --ha-card: rgb(255, 255, 255);
   --ha-text: rgb(32, 33, 36);
   --ha-text-secondary: rgb(95, 99, 104);
-  --ha-divider: rgb(235, 235, 235);
+  --ha-divider: rgb(221, 227, 234);
   --ha-icon: rgb(95, 99, 104);
-  --ha-active: rgb(26, 115, 232);
+  --ha-active: rgb(11, 87, 208);
   --ha-popup-overlay: rgba(0, 0, 0, 0.5);
+  --ha-radius: 28px;
+  --ha-border-width: 0;
 }
 
 .ha-theme-google-dark() {
-  --ha-primary: rgb(138, 180, 248);
-  --ha-background: rgb(23, 23, 23);
-  --ha-card: rgb(32, 33, 36);
-  --ha-text: rgb(242, 242, 242);
-  --ha-text-secondary: rgb(166, 166, 166);
-  --ha-divider: rgb(42, 43, 46);
+  --ha-primary: rgb(168, 199, 250);
+  --ha-background: rgb(19, 19, 20);
+  --ha-card: rgb(30, 31, 32);
+  --ha-text: rgb(227, 227, 227);
+  --ha-text-secondary: rgb(196, 199, 197);
+  --ha-divider: rgb(40, 42, 44);
   --ha-icon: rgb(169, 177, 188);
-  --ha-active: rgb(138, 180, 248);
+  --ha-active: rgb(168, 199, 250);
   --ha-popup-overlay: rgba(0, 0, 0, 0.7);
+  --ha-radius: 28px;
+  --ha-border-width: 0;
 }
 
 .-theme-google {
@@ -958,8 +967,8 @@
   .item {
     color: var(--ha-text);
     background: var(--ha-card) !important;
-    border: 1px solid var(--ha-divider);
-    border-radius: 12px;
+    border: var(--ha-border-width) solid var(--ha-divider);
+    border-radius: var(--ha-radius);
     box-shadow: none;
     box-sizing: border-box;
 
@@ -978,7 +987,7 @@
 
     &.-clickable:active {
       margin: 0;
-      border-color: var(--ha-primary);
+      box-shadow: inset 0 0 0 2px var(--ha-primary);
     }
 
     .item-entity--icon {
@@ -1031,8 +1040,8 @@
   .item-select {
     background: var(--ha-card);
     color: var(--ha-text);
-    border: 1px solid var(--ha-divider);
-    border-radius: 12px;
+    border: var(--ha-border-width) solid var(--ha-divider);
+    border-radius: var(--ha-radius);
 
     &--option {
       &:active,
@@ -1069,7 +1078,7 @@
 
     &-container {
       background: var(--ha-card);
-      border-radius: 12px;
+      border-radius: var(--ha-radius);
     }
 
     &-title,
@@ -1092,7 +1101,7 @@
   .noty {
     background: var(--ha-card);
     color: var(--ha-text);
-    border: 1px solid var(--ha-divider);
-    border-radius: 12px;
+    border: var(--ha-border-width) solid var(--ha-divider);
+    border-radius: var(--ha-radius);
   }
 }
