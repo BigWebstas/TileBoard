@@ -145,3 +145,36 @@ export const legendPaddingPlugin = {
       };
    },
 };
+
+// Chart.js 4 needs ResizeObserver (Chrome 64+). Old WebViews, e.g. Android 7 era tablets, don't have it, so
+// fall back to the window resize event, which also fires on rotation.
+export function installResizeObserverShim () {
+   if (typeof window.ResizeObserver === 'function') {
+      return;
+   }
+
+   window.ResizeObserver = function (callback) {
+      let elements = [];
+
+      function notify () {
+         callback(elements.map(function (target) {
+            return { target, contentRect: { width: target.clientWidth, height: target.clientHeight } };
+         }));
+      }
+
+      this.observe = function (target) {
+         if (!elements.length) {
+            window.addEventListener('resize', notify);
+         }
+         elements.push(target);
+         setTimeout(notify, 0);
+      };
+      this.unobserve = function (target) {
+         elements = elements.filter(element => element !== target);
+      };
+      this.disconnect = function () {
+         elements = [];
+         window.removeEventListener('resize', notify);
+      };
+   };
+}
