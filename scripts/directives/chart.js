@@ -1,8 +1,9 @@
 import angular from 'angular';
 import { Chart, registerables } from 'chart.js';
 import 'chartjs-adapter-moment';
-import { datasetColors, legendPaddingPlugin, normalizeChartOptions } from '../globals/chart';
+import { datasetColors, installResizeObserverShim, legendPaddingPlugin, normalizeChartOptions } from '../globals/chart';
 
+installResizeObserverShim();
 Chart.register(...registerables);
 
 function defaultOptions () {
