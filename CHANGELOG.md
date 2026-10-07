@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.12.0](https://github.com/resoai/TileBoard/compare/v2.11.0...v2.12.0) (2026-10-07)
+
+
+### Features
+
+* **themes:** add google and google-dark themes ([70ff6b4](https://github.com/resoai/TileBoard/commit/70ff6b40a694d44a82bddc11401632fa50e3d188))
+* **themes:** add Home Assistant look-alike themes ([d4833ae](https://github.com/resoai/TileBoard/commit/d4833aea49db5af115d15d0ca07a2f2cb58acd7b))
+
 ## [2.11.0](https://github.com/resoai/TileBoard/compare/v2.10.2...v2.11.0) (2026-10-07)
 
 
