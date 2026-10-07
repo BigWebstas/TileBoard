@@ -54,7 +54,7 @@ This config object has the following fields:
 ```js
 var CONFIG = {
    /* customTheme: specify a custom theme for your dashboard
-    * Valid options: null, CUSTOM_THEMES.TRANSPARENT, CUSTOM_THEMES.MATERIAL, CUSTOM_THEMES.MOBILE, CUSTOM_THEMES.COMPACT, CUSTOM_THEMES.HOMEKIT, CUSTOM_THEMES.HOME_ASSISTANT (light, follows the OS dark mode), CUSTOM_THEMES.HOME_ASSISTANT_DARK, CUSTOM_THEMES.GOOGLE (light, follows the OS dark mode; Pixel / Material 3 look of the Google Theme for HA), CUSTOM_THEMES.GOOGLE_DARK, CUSTOM_THEMES.WINPHONE, CUSTOM_THEMES.WIN95 or a custom theme you have created
+    * Valid options: null, CUSTOM_THEMES.TRANSPARENT, CUSTOM_THEMES.MATERIAL, CUSTOM_THEMES.MOBILE, CUSTOM_THEMES.COMPACT, CUSTOM_THEMES.HOMEKIT, CUSTOM_THEMES.HOME_ASSISTANT (light, follows the OS dark mode), CUSTOM_THEMES.HOME_ASSISTANT_DARK, CUSTOM_THEMES.GOOGLE (dark only; Pixel / Material 3 look of the Google Theme for HA), CUSTOM_THEMES.GOOGLE_DARK (alias), CUSTOM_THEMES.WINPHONE, CUSTOM_THEMES.WIN95 or a custom theme you have created
     * Default: null. Array supported
     */
    customTheme: null,
@@ -714,8 +714,8 @@ Set a theme with `customTheme` in `config.js`. Themes can be combined by passing
 |---|---|
 | `CUSTOM_THEMES.HOME_ASSISTANT` | Home Assistant style cards, blue primary, amber active icons. Light, switches to dark when the device is in dark mode. |
 | `CUSTOM_THEMES.HOME_ASSISTANT_DARK` | The same, always dark. |
-| `CUSTOM_THEMES.GOOGLE` | Pixel / Material 3 look of the [Google Theme for Home Assistant](https://github.com/BigWebstas/google-theme): rounded 28px cards without borders, tonal surfaces, blue primary and active icons. Light, follows the device's dark mode. |
-| `CUSTOM_THEMES.GOOGLE_DARK` | The same, always dark. |
+| `CUSTOM_THEMES.GOOGLE` | Pixel / Material 3 look of the [Google Theme for Home Assistant](https://github.com/BigWebstas/google-theme), dark only: rounded 28px cards without borders, tonal surfaces, light blue primary and active icons. |
+| `CUSTOM_THEMES.GOOGLE_DARK` | Alias of `GOOGLE`. |
 
 ```js
 customTheme: CUSTOM_THEMES.GOOGLE,
