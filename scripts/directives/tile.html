@@ -113,26 +113,26 @@
       <div
          class="item-entity"
          ng-if="(_icon = entityIcon(item, entity))"
-         ng-class="{'-with-select': entity.attributes.speed_list}"
+         ng-class="{'-with-select': entity.attributes.preset_modes}"
       >
          <span class="item-entity--icon mdi" ng-class="_icon"></span>
       </div>
 
       <div class="item-fan">
-         <div class="item-fan--speed" ng-if="entity.attributes.speed_list" ng-click="openFanSpeedSelect($event, item)">
-            <span ng-bind="entity.attributes.speed"></span>
+         <div class="item-fan--speed" ng-if="entity.attributes.preset_modes" ng-click="openFanSpeedSelect($event, item)">
+            <span ng-bind="entity.attributes.preset_mode"></span>
          </div>
       </div>
 
       <div
          ng-if="selectOpened(item)"
          class="item-select"
-         ng-style="itemSelectStyles(entity, entity.attributes.speed_list)"
+         ng-style="itemSelectStyles(entity, entity.attributes.preset_modes)"
       >
          <div
             class="item-select--option"
-            ng-repeat="option in entity.attributes.speed_list track by $index"
-            ng-class="{'-active': option === entity.attributes.speed}"
+            ng-repeat="option in entity.attributes.preset_modes track by $index"
+            ng-class="{'-active': option === entity.attributes.preset_mode}"
             ng-click="setFanSpeed($event, item, entity, option)"
          >
             <span ng-bind="option"></span>

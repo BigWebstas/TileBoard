@@ -135,6 +135,10 @@ export const FEATURES = {
       TURN_OFF: 256,
       STOP: 4096,
    },
+   WEATHER: {
+      // https://github.com/home-assistant/core/blob/dev/homeassistant/components/weather/const.py
+      FORECAST_DAILY: 1,
+   },
    VACUUM: {
       TURN_ON: 1,
       TURN_OFF: 2,

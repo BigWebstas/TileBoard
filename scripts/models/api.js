@@ -207,6 +207,20 @@ App.provider('Api', function () {
          this.send(data, callback);
       };
 
+      // Returns the subscription id; forecast updates arrive as 'event' messages carrying it.
+      $Api.prototype.subscribeForecast = function (entityId, forecastType) {
+         const id = this._id++;
+
+         this.send({
+            id: id,
+            type: 'weather/subscribe_forecast',
+            entity_id: entityId,
+            forecast_type: forecastType,
+         });
+
+         return id;
+      };
+
       $Api.prototype.getStates = function (callback) {
          return this.send({ type: 'get_states' }, callback);
       };
