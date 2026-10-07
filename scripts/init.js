@@ -1,7 +1,6 @@
 import angular from 'angular';
 import 'hammerjs';
 import 'angular-hammer';
-import 'angular-chart.js';
 import 'angularjs-gauge';
 import 'angular-moment';
 import 'angular-dynamic-locale';
@@ -15,7 +14,7 @@ window.initApp = function () {
       angular.bootstrap(document, [App.name]);
    });
 
-   App.config(function ($sceProvider, $locationProvider, ApiProvider, ChartJsProvider, tmhDynamicLocaleProvider) {
+   App.config(function ($sceProvider, $locationProvider, ApiProvider, tmhDynamicLocaleProvider) {
       $sceProvider.enabled(false);
 
       $locationProvider.html5Mode({
@@ -33,64 +32,5 @@ window.initApp = function () {
       });
 
       tmhDynamicLocaleProvider.localeLocationPattern('./locales/{{locale}}.js');
-
-      const clock24 = window.CONFIG.timeFormat === 24;
-
-      ChartJsProvider.setOptions('line', {
-         maintainAspectRatio: false, // to fit popup automatically
-         layout: {
-            padding: {
-               bottom: 10,
-               left: 10,
-               right: 10,
-            },
-         },
-         scales: {
-            xAxes: [{
-               type: 'time',
-               time: {
-                  displayFormats: {
-                     datetime: clock24 ? 'MMM D, YYYY, H:mm:ss' : 'MMM D, YYYY, h:mm:ss a',
-                     hour: clock24 ? 'H:mm' : 'h:mm a',
-                     millisecond: clock24 ? 'H:mm:ss.SSS' : 'h:mm:ss.SSS a',
-                     minute: clock24 ? 'H:mm' : 'h:mm a',
-                     second: clock24 ? 'H:mm:ss' : 'h:mm:ss a',
-                  },
-               },
-            }],
-            yAxes: [
-               {
-                  ticks: {
-                     maxTicksLimit: 7,
-                  },
-               },
-            ],
-         },
-         elements: {
-            point: {
-               radius: 0, // to remove points
-               hitRadius: 5,
-            },
-            line: {
-               borderWidth: 1,
-               stepped: true,
-            },
-         },
-         legend: {
-            align: 'start',
-            display: true,
-         },
-         tooltips: {
-            intersect: false,
-         },
-         hover: {
-            intersect: false,
-         },
-      });
-
-      // Workaround to add padding around legend.
-      window.Chart.Legend.prototype.afterFit = function () {
-         this.height += 20;
-      };
    });
 };

@@ -73,18 +73,16 @@
     "standard-version": "^9.1.1"
   },
   "dependencies": {
-    "@mdi/font": "^6.9.96",
+    "@mdi/font": "^7.4.47",
     "angular": "^1.8.3",
-    "angular-chart.js": "^1.1.1",
     "angular-dynamic-locale": "^0.1.38",
     "angular-hammer": "^2.2.0",
     "angular-moment": "^1.3.0",
     "angularjs-gauge": "^2.2.0",
-    "chart.js": "^2.9.4",
-    "hls.js": "^1.1.5",
-    "lodash.mergewith": "^4.6.2"
-  },
-  "resolutions": {
-    "chart.js": "2.9.4"
+    "chart.js": "^4",
+    "chartjs-adapter-moment": "^1.0.1",
+    "hls.js": "^1.7.3",
+    "lodash.mergewith": "^4.6.2",
+    "moment": "^2.31.0"
   }
 }

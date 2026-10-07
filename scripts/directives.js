@@ -1,4 +1,5 @@
 import { App } from './app';
+import chart from './directives/chart';
 import camera from './directives/camera';
 import cameraStream from './directives/cameraStream';
 import clock from './directives/clock';
@@ -11,6 +12,7 @@ import onScroll from './directives/onScroll';
 import tile from './directives/tile';
 
 App.directive('camera', camera);
+App.directive('chart', chart);
 App.directive('cameraStream', cameraStream);
 App.directive('clock', clock);
 App.directive('date', date);

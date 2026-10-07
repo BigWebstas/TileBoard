@@ -46,6 +46,8 @@ App.controller('Main', function ($scope, $timeout, $location, Api, tmhDynamicLoc
 
    $scope.errors = [];
    $scope.states = {};
+   $scope.forecasts = {};
+   let forecastSubscriptions = {};
 
    $scope.activeDatetime = null;
    $scope.datetimeString = null;
@@ -1460,11 +1462,20 @@ App.controller('Main', function ($scope, $timeout, $location, Api, tmhDynamicLoc
       $scope.openSelect(item);
    };
 
+   $scope.stepFanSpeed = function ($event, item, service) {
+      $event.preventDefault();
+      $event.stopPropagation();
+
+      callService(item, 'fan', service, {});
+
+      return false;
+   };
+
    $scope.setFanSpeed = function ($event, item, entity, option) {
       $event.preventDefault();
       $event.stopPropagation();
 
-      callService(item, 'fan', 'set_speed', { speed: option });
+      callService(item, 'fan', 'set_preset_mode', { preset_mode: option });
 
       $scope.closeActiveSelect();
 
@@ -2128,6 +2139,8 @@ App.controller('Main', function ($scope, $timeout, $location, Api, tmhDynamicLoc
    });
 
    Api.onReady(function () {
+      forecastSubscriptions = {};
+
       Api.subscribeEvents('state_changed', function (res) {
          debugLog('subscribed to state_changed', res);
       });
@@ -2141,6 +2154,7 @@ App.controller('Main', function ($scope, $timeout, $location, Api, tmhDynamicLoc
             debugLog(res.result);
 
             setStates(res.result);
+            subscribeForecasts();
          }
 
          $scope.ready = true;
@@ -2205,6 +2219,7 @@ App.controller('Main', function ($scope, $timeout, $location, Api, tmhDynamicLoc
    function getContext () {
       return {
          states: $scope.states,
+         forecasts: $scope.forecasts,
          $scope: $scope,
          parseFieldValue: parseFieldValue.bind(this),
          api: Api,
@@ -2341,6 +2356,16 @@ App.controller('Main', function ($scope, $timeout, $location, Api, tmhDynamicLoc
       });
    }
 
+   // Weather entities no longer carry a `forecast` attribute (removed in HA 2024.3);
+   // expose the daily forecast to config functions as `this.forecasts[entityId]`.
+   function subscribeForecasts () {
+      Object.keys($scope.states).forEach(function (entityId) {
+         if (entityId.startsWith('weather.') && supportsFeature(FEATURES.WEATHER.FORECAST_DAILY, $scope.states[entityId])) {
+            forecastSubscriptions[Api.subscribeForecast(entityId, 'daily')] = entityId;
+         }
+      });
+   }
+
    function setNewState (key, state) {
       if (!$scope.states[key]) {
          $scope.states[key] = state;
@@ -2383,7 +2408,10 @@ App.controller('Main', function ($scope, $timeout, $location, Api, tmhDynamicLoc
    }
 
    function handleMessage (data) {
-      if (data.type === 'event') {
+      if (data.type === 'event' && data.id in forecastSubscriptions) {
+         $scope.forecasts[forecastSubscriptions[data.id]] = data.event.forecast;
+         updateView();
+      } else if (data.type === 'event') {
          handleEvent(data.event);
       }
    }

@@ -207,7 +207,7 @@ Essentially a door entry tile is a pop-up with a fullscreen camera and a set of 
 ```
 
 #### FAN
-Allows you to toggle a fan on and off, as well as set the speed.
+Allows you to toggle a fan on and off, as well as step its speed up and down (+/- buttons, for fans with speed control) and pick a preset mode (when the fan exposes `preset_modes`).
 
 ![FAN](images/tile-screenshots/FAN.png)
 ```js
@@ -708,6 +708,7 @@ This is a custom tile which can be used for displaying values from different sen
 
 #### WEATHER_LIST
 The example below is for the OpenWeatherMap provider. The configuration can vary per weather provider.
+The daily forecast of every `weather.*` entity is available in config functions as `this.forecasts['weather.entity_id']` (an array). The old `attributes.forecast` was removed in Home Assistant 2024.3.
 ![WEATHER_LIST](images/tile-screenshots/WEATHER_LIST.png)<br>
 ```js
 {
@@ -742,22 +743,18 @@ The example below is for the OpenWeatherMap provider. The configuration can vary
       var ENTITY_ID = 'weather.openweathermap'
       return {
          date: function () {
-            var entityState = this.states[ENTITY_ID];
-            return entityState.attributes.forecast[id].datetime
+            return this.forecasts[ENTITY_ID][id].datetime
          },
          icon: function () {
-            var entityState = this.states[ENTITY_ID];
-            return entityState.attributes.forecast[id].condition
+            return this.forecasts[ENTITY_ID][id].condition
          },
          // iconImage: null,  // replace icon with image
          primary: function () {
-            var entityState = this.states[ENTITY_ID];
-            var forecast = entityState.attributes.forecast[id]
+            var forecast = this.forecasts[ENTITY_ID][id]
             return forecast.templow + ' - ' + forecast.temperature + ' °C'
          },
          secondary: function () {
-            var entityState = this.states[ENTITY_ID];
-            var forecast = entityState.attributes.forecast[id]
+            var forecast = this.forecasts[ENTITY_ID][id]
 
             // Wind speed. Convert m/s to km/h.
             // return Number.parseInt(forecast.wind_speed * 3.6) + ' km/h'
