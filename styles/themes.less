@@ -844,3 +844,215 @@
    }
 
 }
+
+// Home Assistant look: surface cards with a hairline border, HA's blue as primary and amber for active entities.
+// `home-assistant` is light and follows the OS dark mode, `home-assistant-dark` is always dark.
+.ha-theme-light() {
+  --ha-primary: #03a9f4;
+  --ha-background: #fafafa;
+  --ha-card: #fff;
+  --ha-text: #212121;
+  --ha-text-secondary: #727272;
+  --ha-divider: #e0e0e0;
+  --ha-icon: #44739e;
+  --ha-active: #ffc107;
+  --ha-popup-overlay: rgba(0, 0, 0, 0.5);
+}
+
+.ha-theme-dark() {
+  --ha-primary: #03a9f4;
+  --ha-background: #111;
+  --ha-card: #1c1c1c;
+  --ha-text: #e1e1e1;
+  --ha-text-secondary: #9b9b9b;
+  --ha-divider: rgba(225, 225, 225, 0.12);
+  --ha-icon: #44739e;
+  --ha-active: #ffc107;
+  --ha-popup-overlay: rgba(0, 0, 0, 0.7);
+}
+
+.-theme-home-assistant {
+  .ha-theme-light();
+
+  @media (prefers-color-scheme: dark) {
+    .ha-theme-dark();
+  }
+}
+
+.-theme-home-assistant-dark {
+  .ha-theme-dark();
+}
+
+.-theme-home-assistant,
+.-theme-home-assistant-dark {
+  font-family: 'Roboto', 'Segoe UI', 'Ubuntu', 'Helvetica Neue', sans-serif;
+  color: var(--ha-text);
+  background: var(--ha-background) !important;
+
+  .header,
+  .footer {
+    color: var(--ha-text);
+  }
+
+  .group-title {
+    color: var(--ha-text-secondary);
+    font-weight: 500;
+    opacity: 1;
+  }
+
+  .pages-menu {
+    &--item {
+      color: var(--ha-text-secondary);
+
+      &.-active {
+        color: var(--ha-primary);
+      }
+    }
+
+    &.-bottom {
+      background: var(--ha-card);
+      border-top: 1px solid var(--ha-divider);
+    }
+  }
+
+  .item {
+    color: var(--ha-text);
+    background: var(--ha-card) !important;
+    border: 1px solid var(--ha-divider);
+    border-radius: 12px;
+    box-shadow: none;
+    box-sizing: border-box;
+
+    &-state {
+      background: transparent;
+      color: var(--ha-text-secondary);
+    }
+
+    &-subtitle {
+      color: var(--ha-text-secondary);
+    }
+
+    &-clickable {
+      display: none !important;
+    }
+
+    &.-clickable:active {
+      margin: 0;
+      border-color: var(--ha-primary);
+    }
+
+    .item-entity--icon {
+      color: var(--ha-icon);
+    }
+
+    &.-on,
+    &.-open,
+    &.-unlocked,
+    &.-heat {
+      .item-entity--icon {
+        color: var(--ha-active);
+      }
+    }
+
+    &.-playing .item-entity--icon {
+      color: var(--ha-primary);
+    }
+
+    &.-triggered .item-entity--icon {
+      color: #db4437;
+    }
+
+    &.-unavailable {
+      opacity: 0.6;
+    }
+
+    // Tiles that draw their own picture keep a dark base and light text, like HA's picture cards.
+    &.-device_tracker {
+      background: #222 !important;
+    }
+
+    &.-device_tracker,
+    &.-camera,
+    &.-camera_thumbnail,
+    &.-camera_stream {
+      overflow: hidden;
+
+      .item-title,
+      .item-state {
+        color: #fff;
+      }
+    }
+  }
+
+  .item-list--name {
+    color: var(--ha-text);
+  }
+
+  .item-select {
+    background: var(--ha-card);
+    color: var(--ha-text);
+    border: 1px solid var(--ha-divider);
+    border-radius: 12px;
+
+    &--option {
+      &:active,
+      &.-active {
+        background: var(--ha-divider);
+        color: var(--ha-primary);
+      }
+    }
+  }
+
+  .media-player--source {
+    color: var(--ha-text-secondary);
+  }
+
+  input[type=range]::-webkit-slider-runnable-track {
+    background: var(--ha-divider);
+    border-radius: 4px;
+  }
+  input[type=range]::-moz-range-track {
+    background: var(--ha-divider);
+    border-radius: 4px;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    background: var(--ha-primary);
+    border-radius: 50%;
+  }
+  input[type=range]::-moz-range-thumb {
+    background: var(--ha-primary);
+    border-radius: 50%;
+  }
+
+  .popup {
+    background: var(--ha-popup-overlay);
+
+    &-container {
+      background: var(--ha-card);
+      border-radius: 12px;
+    }
+
+    &-title,
+    &-close {
+      background: var(--ha-card);
+      color: var(--ha-text);
+      border-bottom: 1px solid var(--ha-divider);
+    }
+  }
+
+  .camera-popup--list-item {
+    color: var(--ha-text-secondary);
+
+    &.-active {
+      color: var(--ha-text);
+      background: var(--ha-divider);
+    }
+  }
+
+  .noty {
+    background: var(--ha-card);
+    color: var(--ha-text);
+    border: 1px solid var(--ha-divider);
+    border-radius: 12px;
+  }
+}

@@ -54,7 +54,7 @@ This config object has the following fields:
 ```js
 var CONFIG = {
    /* customTheme: specify a custom theme for your dashboard
-    * Valid options: null, CUSTOM_THEMES.TRANSPARENT, CUSTOM_THEMES.MATERIAL, CUSTOM_THEMES.MOBILE, CUSTOM_THEMES.COMPACT, CUSTOM_THEMES.HOMEKIT, CUSTOM_THEMES.WINPHONE, CUSTOM_THEMES.WIN95 or a custom theme you have created
+    * Valid options: null, CUSTOM_THEMES.TRANSPARENT, CUSTOM_THEMES.MATERIAL, CUSTOM_THEMES.MOBILE, CUSTOM_THEMES.COMPACT, CUSTOM_THEMES.HOMEKIT, CUSTOM_THEMES.HOME_ASSISTANT (light, follows the OS dark mode), CUSTOM_THEMES.HOME_ASSISTANT_DARK, CUSTOM_THEMES.WINPHONE, CUSTOM_THEMES.WIN95 or a custom theme you have created
     * Default: null. Array supported
     */
    customTheme: null,
