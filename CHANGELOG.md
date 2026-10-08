@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.13.0](https://github.com/resoai/TileBoard/compare/v2.12.0...v2.13.0) (2026-10-08)
+
+
+### Features
+
+* **themes:** make the google theme dark only ([a98feea](https://github.com/resoai/TileBoard/commit/a98feeaf81a650dbde8a21d3f602b8c1239111c5))
+* **themes:** match the google themes to the Pixel / Material 3 google-theme ([8f32f6e](https://github.com/resoai/TileBoard/commit/8f32f6ed3cd828655d0f7cad3ae32ae0cc6f5ba4))
+
+
+### Bug Fixes
+
+* **chart:** fall back to window resize when ResizeObserver is missing ([f759664](https://github.com/resoai/TileBoard/commit/f759664871c1c9712522d942e19133f509c97733))
+* transpile chart.js and hls.js so old browsers can parse the bundle ([847d753](https://github.com/resoai/TileBoard/commit/847d7533d88a1a913944252d90b0a0de5fecc41b))
+
 ## [2.12.0](https://github.com/resoai/TileBoard/compare/v2.11.0...v2.12.0) (2026-10-07)
 
 
