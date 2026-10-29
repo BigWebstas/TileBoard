@@ -14,7 +14,10 @@ window.initApp = function () {
       angular.bootstrap(document, [App.name]);
    });
 
-   App.config(function ($sceProvider, $locationProvider, ApiProvider, tmhDynamicLocaleProvider) {
+   App.config(function ($compileProvider, $sceProvider, $locationProvider, ApiProvider, tmhDynamicLocaleProvider) {
+      // Skips attaching scope/binding metadata to every DOM node. Nothing here uses element.scope().
+      $compileProvider.debugInfoEnabled(false);
+
       $sceProvider.enabled(false);
 
       $locationProvider.html5Mode({
