@@ -111,10 +111,10 @@
 
    <div ng-if="item.type === TYPES.FAN" class="item-entity-container">
       <div ng-if="entity.state === 'on' && supportsFeature(FEATURES.FAN.SET_SPEED, entity)">
-         <div class="item-button -center-right" ng-click="stepFanSpeed($event, item, 'increase_speed')">
+         <div class="item-button -large -center-right" ng-click="stepFanSpeed($event, item, 'increase_speed')">
             <i class="mdi mdi-plus"></i>
          </div>
-         <div class="item-button -bottom-right" ng-click="stepFanSpeed($event, item, 'decrease_speed')">
+         <div class="item-button -large -bottom-right" ng-click="stepFanSpeed($event, item, 'decrease_speed')">
             <i class="mdi mdi-minus"></i>
          </div>
       </div>
