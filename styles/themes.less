@@ -849,7 +849,7 @@
 // `home-assistant` is light and follows the OS dark mode, `home-assistant-dark` is always dark.
 // The `google` theme (dark only, `google-dark` is an alias) reuses the same structure with the Pixel / Material 3 palette and shapes of
 // https://github.com/BigWebstas/google-theme (fork of JuanMTech/google-theme): blue primary, blue active entities,
-// 28px corners and no card border.
+// 28px corners and a hairline outline so neighbouring tiles stay distinct.
 .ha-theme-light() {
   --ha-primary: #03a9f4;
   --ha-background: #fafafa;
@@ -893,15 +893,15 @@
 .ha-theme-google-dark() {
   --ha-primary: rgb(168, 199, 250);
   --ha-background: rgb(19, 19, 20);
-  --ha-card: rgb(30, 31, 32);
+  --ha-card: rgb(40, 42, 44);
   --ha-text: rgb(227, 227, 227);
   --ha-text-secondary: rgb(196, 199, 197);
-  --ha-divider: rgb(40, 42, 44);
+  --ha-divider: rgb(68, 71, 70);
   --ha-icon: rgb(169, 177, 188);
   --ha-active: rgb(168, 199, 250);
   --ha-popup-overlay: rgba(0, 0, 0, 0.7);
   --ha-radius: 28px;
-  --ha-border-width: 0;
+  --ha-border-width: 1px;
 }
 
 .-theme-google,
