@@ -2545,8 +2545,39 @@ App.controller('Main', function ($scope, $timeout, $location, Api, tmhDynamicLoc
       }, timeout);
    }
 
+   // A live socket can still have missed state_changed events, so periodically re-fetch all states.
+   // No reply means the connection is stuck, so reconnect (which resyncs on ready).
+   function resyncStates () {
+      if (!Api.socket || Api.socket.readyState !== WebSocket.OPEN) {
+         return;
+      }
+
+      let success = false;
+
+      Api.getStates(function (res) {
+         if (res.success) {
+            success = true;
+            setStates(res.result);
+            updateView();
+         }
+      });
+
+      $timeout(function () {
+         if (!success) {
+            Api.forceReconnect();
+         }
+      }, 10000);
+   }
+
    if (CONFIG.pingConnection !== false) {
       setInterval(pingConnection, 5000);
+      setInterval(resyncStates, 5 * 60 * 1000);
+
+      document.addEventListener('visibilitychange', function () {
+         if (!document.hidden) {
+            resyncStates();
+         }
+      });
 
       window.addEventListener('focus', function () {
          pingConnection();
