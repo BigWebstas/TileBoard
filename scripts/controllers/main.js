@@ -2569,9 +2569,16 @@ App.controller('Main', function ($scope, $timeout, $location, Api, tmhDynamicLoc
       }, 10000);
    }
 
+   function checkConnection () {
+      if (!$scope.ready || realReadyState === false || !Api.socket || Api.socket.readyState !== WebSocket.OPEN) {
+         Api.forceReconnect();
+      }
+   }
+
    if (CONFIG.pingConnection !== false) {
       setInterval(pingConnection, 5000);
       setInterval(resyncStates, 5 * 60 * 1000);
+      setInterval(checkConnection, 10 * 60 * 1000);
 
       document.addEventListener('visibilitychange', function () {
          if (!document.hidden) {
